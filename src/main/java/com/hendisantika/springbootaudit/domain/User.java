@@ -1,18 +1,19 @@
 package com.hendisantika.springbootaudit.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 /**
@@ -26,8 +27,9 @@ import java.time.LocalDateTime;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
+@Table(name = "t_users")
 @EntityListeners(AuditingEntityListener.class)
-@Table
+@Data
 public class User {
 
     @Id
@@ -58,37 +60,13 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime modified;
 
-    public Long getId() {
-        return id;
-    }
-
     public User setName(String name) {
         this.name = name;
         return this;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public User setUsername(String username) {
         this.username = username;
         return this;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public String getModifiedBy() {
-        return modifiedBy;
     }
 }
